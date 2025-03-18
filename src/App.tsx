@@ -1,6 +1,6 @@
 
 import './App.css'
-import { useHover } from './useHover';
+import { useHover } from './customHooks/useHover';
 
 function App() {
     const styles = {
