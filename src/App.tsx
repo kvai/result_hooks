@@ -1,6 +1,6 @@
 
 import "./App.css";
-import { useFetch } from "./useFetch";
+import { useFetch } from "./customHooks/useFetch";
 
 function App() {
 const url = "https://jsonplaceholder.typicode.com/posts"
