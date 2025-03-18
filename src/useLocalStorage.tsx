@@ -1,14 +1,25 @@
 import { useState, useEffect } from "react";
 
-export const useLocalStorage = (key: string) => {
-  const initialValue: string | null = null;
+type LocalStorageSetValue = string;
+type LocalStorageReturnValue = LocalStorageSetValue | null;
+
+type UseLocalStorage = (key: string) => [
+    value: LocalStorageReturnValue,
+  {
+    setItem: (value: LocalStorageSetValue) => void;
+    removeItem: () => void;
+  },
+];
+
+export const useLocalStorage: UseLocalStorage = (key) => {
+  const value = null;
   const getInitialValue = () => {
     try {
       const item = window.localStorage.getItem(key);
-      return item ? JSON.parse(item) : initialValue;
+      return item ? JSON.parse(item) : value;
     } catch (error) {
       console.error(error);
-      return initialValue;
+      return value;
     }
   };
 
@@ -22,7 +33,7 @@ export const useLocalStorage = (key: string) => {
     }
   }, [key, savedValue]);
 
-  const setItem = (newValue: string) => {
+  const setItem = (newValue: LocalStorageSetValue) => {
     setSavedValue(newValue);
   };
 
