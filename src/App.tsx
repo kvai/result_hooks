@@ -1,6 +1,6 @@
 
 import './App.css'
-import { useLocalStorage } from './useLocalStorage';
+import { useLocalStorage } from './customHooks/useLocalStorage';
 
 function App() {
 
