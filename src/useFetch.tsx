@@ -42,5 +42,3 @@ export const useFetch = (url: string): {
     refetch: fetchData
   };
 };
-
-export default useFetch;
