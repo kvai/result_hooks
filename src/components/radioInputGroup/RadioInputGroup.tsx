@@ -1,8 +1,8 @@
 interface RadioInputGroupProps {
-  name: string;
-  value: string;
+  name: string | undefined;
+  value: string | undefined;
   uniqueId: string;
-  onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: ((event: React.ChangeEvent<HTMLInputElement>) => void) | undefined;
 }
 
 export const RadioInputGroup = ({

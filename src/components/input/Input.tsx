@@ -34,7 +34,7 @@ export const Input = (props: InputProps) => {
     disabled = false,
     name,
     onChange,
-    value
+    value,
   } = props;
 
   const typeRadio = type === "radio";
@@ -71,7 +71,6 @@ export const Input = (props: InputProps) => {
             <RadioInputGroup
               name={name}
               uniqueId={uniqueId}
-              label={label}
               onChange={onChange}
               value={value}
             />
