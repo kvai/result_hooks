@@ -1,9 +1,7 @@
-
 import { CombinedProps } from "../types";
 import { Input } from "./input/Input";
 
-export const Signup = ({ handleSubmit, handleChange, }: CombinedProps) => {
-
+export const Signup = ({ handleSubmit, handleChange }: CombinedProps) => {
   return (
     <form onSubmit={handleSubmit} onChange={handleChange}>
       <Input
@@ -27,8 +25,12 @@ export const Signup = ({ handleSubmit, handleChange, }: CombinedProps) => {
         type="email"
         name="email"
       />
-      <Input type="radio" name="sex" value="мужской" label="мужской" />
-      <Input type="radio" name="sex" value="женский" label="женский" />
+      <fieldset>
+        <legend>Выберите пол:</legend>
+        <Input type="radio" name="sex" value="мужской" label="мужской" />
+        <Input type="radio" name="sex" value="женский" label="женский" />
+      </fieldset>
+
       <Input
         label="Пароль"
         placeholder="Введите Пароль"

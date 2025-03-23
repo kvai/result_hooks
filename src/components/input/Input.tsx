@@ -58,35 +58,37 @@ export const Input = (props: InputProps) => {
           data-radius={radius}
           data-error={!!error}
         >
-          {label && (
-            <label htmlFor={uniqueId}>
-              {label}
-              {withAsterisk && <span> *</span>}
-            </label>
-          )}
-          {description && (
-            <div className={styles.description}>{description}</div>
-          )}
           {typeRadio ? (
             <RadioInputGroup
               name={name}
               uniqueId={uniqueId}
               onChange={onChange}
               value={value}
+              label={label}
             />
           ) : (
-            <input
-              name={name}
-              id={uniqueId}
-              type={type}
-              disabled={disabled}
-              placeholder={placeholder}
-              className={error && styles.error}
-              required={withAsterisk}
-              onChange={onChange}
-            />
+            <>
+              {label && (
+                <label htmlFor={uniqueId}>
+                  {label}
+                  {withAsterisk && <span> *</span>}
+                </label>
+              )}
+              {description && (
+                <div className={styles.description}>{description}</div>
+              )}
+              <input
+                name={name}
+                id={uniqueId}
+                type={type}
+                disabled={disabled}
+                placeholder={placeholder}
+                className={error && styles.error}
+                required={withAsterisk}
+                onChange={onChange}
+              />
+            </>
           )}
-
           {error && <div className={styles.error_message}>{error}</div>}
         </div>
       </div>
