@@ -20,7 +20,7 @@ export const Card = ({ dataType }: DataType) => {
     );
   }
   const itemDate = useFormatDate(formattedDate);
-  
+
   return loading ? (
     <div>Загружаю данные...</div>
   ) : (
@@ -37,7 +37,7 @@ export const Card = ({ dataType }: DataType) => {
             {filteredItem?.map(([key, value]) => (
               <li key={key + value} className={styles.detailItem}>
                 <span className={styles.detailLabel}>
-                  {key.replace("_", " ")}
+                  {key.replace("_", " ")}:
                 </span>
                 <span className={styles.detailValue}>
                   {key === 'created' ?  itemDate : (value as string) || "unknown"}
