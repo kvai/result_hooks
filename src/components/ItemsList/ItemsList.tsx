@@ -1,14 +1,17 @@
 import { Link } from "react-router-dom";
 import styles from "./ItemsList.module.scss";
 import { useFetchData } from "../../customHooks/useFetchData";
-import { DataType } from "../../types";
+import { DataType } from "../../../types/types";
+import { Loading } from "../Loading";
+import { useLoadingContext } from "../../customHooks/useLoadingContext";
 
-export const ItemsList = ({dataType}: DataType) => {
+export const ItemsList = ({ dataType }: DataType) => {
+  const { isLoading } = useLoadingContext();
 
-  const { data, loading } = useFetchData(dataType);
+  const { data } = useFetchData(dataType);
 
-  return loading ? (
-    <div>Загружаю данные...</div>
+  return isLoading || !data.length ? (
+    <Loading />
   ) : (
     <>
       <div className={styles.itemsList}>

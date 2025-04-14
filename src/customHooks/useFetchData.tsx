@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { getData } from "../helpers/httpRequest";
-import { ResultType } from "../types";
+import { ResultType } from "../../types/types";
+import { useLoadingContext } from "./useLoadingContext";
 
 export const useFetchData = (filePath: string) => {
   const [data, setData] = useState<ResultType>([] as ResultType);
-  const [loading, setLoading] = useState<boolean>(true);
+  const { setLoading } = useLoadingContext();
 
   useEffect(() => {
     const fetchCharacters = async () => {
@@ -20,7 +21,7 @@ export const useFetchData = (filePath: string) => {
     };
 
     fetchCharacters();
-  }, [filePath]);
+  }, [filePath, setLoading]);
 
-  return { data, loading };
+  return { data };
 };

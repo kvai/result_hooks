@@ -8,7 +8,7 @@ export const Header = () => {
     <>
       <div className={styles.wrapper}>
         <div className={styles.logo}>
-          <Link to={'/'}>
+          <Link to={"/"}>
             <img style={{ width: 600 }} src={logo} alt="Logo" />
           </Link>
         </div>
