@@ -1,9 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useAuthContext } from "../customHooks/useAuthContext";
 
 export const Login = () => {
-  const { signin } = useAuthContext();
+  const { signin, user } = useAuthContext();
   const historyLink = useLocation().state?.from || "";
 
   const navigate = useNavigate();
@@ -16,9 +16,19 @@ export const Login = () => {
     const username = formData.get("username") as string;
 
     signin(username, () => {
-      navigate(historyLink, { replace: true });
+      navigate(!historyLink ? "/" : historyLink, {
+        replace: true,
+      });
     });
   };
+
+  useEffect(() => {
+    if (user) {
+      navigate("/", {
+        replace: true,
+      });
+    }
+  }, [navigate, user]);
 
   return (
     <>
