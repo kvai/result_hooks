@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { FormEvent, useEffect } from "react";
+import { FormEvent } from "react";
 import { useAuthContext } from "../customHooks/useAuthContext";
 
 export const Login = () => {
