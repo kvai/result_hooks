@@ -22,14 +22,6 @@ export const Login = () => {
     });
   };
 
-  useEffect(() => {
-    if (user) {
-      navigate("/", {
-        replace: true,
-      });
-    }
-  }, [navigate, user]);
-
   return (
     <>
       <form onSubmit={handleSubmit}>
