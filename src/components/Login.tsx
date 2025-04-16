@@ -3,7 +3,7 @@ import { FormEvent, useEffect } from "react";
 import { useAuthContext } from "../customHooks/useAuthContext";
 
 export const Login = () => {
-  const { signin, user } = useAuthContext();
+  const { signin } = useAuthContext();
   const historyLink = useLocation().state?.from || "";
 
   const navigate = useNavigate();
