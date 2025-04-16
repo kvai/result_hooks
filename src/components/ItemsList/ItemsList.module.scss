@@ -1,0 +1,28 @@
+.itemsList {
+    width: 400px;
+    background-color: #282c34;
+    color: #ffffff;
+    border-radius:0 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+    margin: 20px auto;
+    font-family: 'Roboto Mono', monospace;
+  
+    .title {
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+  
+    .list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+  
+      .item {
+        margin-bottom: 10px;
+        font-size: 18px;
+      }
+    }
+  }
