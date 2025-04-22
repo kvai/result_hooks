@@ -16,19 +16,19 @@ export const AppRoutes = () => {
           <Route index element={<Home />} />
 
           <Route element={<PrivateRoute />}>
-            <Route path="characters">
-              <Route index element={<LazyItemsList dataType="characters" />} />
-              <Route path=":id" element={<LazyCard dataType="characters" />} />
+            <Route path="character">
+              <Route index element={<LazyItemsList dataType="character" />} />
+              <Route path=":id" element={<LazyCard dataType="character" />} />
             </Route>
 
-            <Route path="episodes">
-              <Route index element={<LazyItemsList dataType="episodes" />} />
-              <Route path=":id" element={<LazyCard dataType="episodes" />} />
+            <Route path="episode">
+              <Route index element={<LazyItemsList dataType="episode" />} />
+              <Route path=":id" element={<LazyCard dataType="episode" />} />
             </Route>
 
-            <Route path="locations">
-              <Route index element={<LazyItemsList dataType="locations" />} />
-              <Route path=":id" element={<LazyCard dataType="locations" />} />
+            <Route path="location">
+              <Route index element={<LazyItemsList dataType="location" />} />
+              <Route path=":id" element={<LazyCard dataType="location" />} />
             </Route>
           </Route>
 

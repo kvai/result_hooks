@@ -1,4 +1,7 @@
-export const Home = () => {
+import { useFetchData } from "../customHooks/useFetchData";
 
-    return <h1>Helloooooo!</h1>
-}
+export const Home = () => {
+  useFetchData("character", "2");
+
+  return <h1>Helloooooo!</h1>;
+};
