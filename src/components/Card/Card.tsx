@@ -1,4 +1,3 @@
-import { useFormatDate } from "../../customHooks/useFormatDate";
 import styles from "./Card.module.scss";
 import { useFetchData } from "../../customHooks/useFetchData";
 import { useParams } from "react-router-dom";
@@ -9,31 +8,39 @@ import { useLoadingContext } from "../../customHooks/useLoadingContext";
 export const Card = ({ dataType }: DataType) => {
   const { isLoading } = useLoadingContext();
   const { id } = useParams();
-  const { data } = useFetchData(dataType);
+  const { data, error } = useFetchData({
+    dataType: dataType,
+    id,
+  });
 
-  let item = null;
-  let filteredItem = null;
-  let formattedDate = null;
+  const filteredItem = Object.entries(data).filter(
+    ([key]) =>
+      ![
+        "id",
+        "image",
+        "origin",
+        "location",
+        "url",
+        "episode",
+        "residents",
+        "characters",
+      ].includes(key)
+  );
 
-  if (!isLoading && data.length) {
-    item = data?.find((item) => id === item.id.toString());
-    formattedDate = item?.created;
-    filteredItem = Object.entries(item).filter(
-      ([key]) => !["id", "image"].includes(key)
-    );
+  if (error) {
+    return <h1>Что-то пошло не так!</h1>;
   }
-  const itemDate = useFormatDate(formattedDate);
 
-  return isLoading || !data.length ? (
+  return isLoading ? (
     <Loading />
   ) : (
     <>
       <div className={styles.card}>
         <div className={styles.cardHeader}>
-          {item.image && (
-            <img src={item.image} alt={item.name} className={styles.avatar} />
+          {data.image && (
+            <img src={data.image} alt={data.name} className={styles.avatar} />
           )}
-          <h1 className={styles.cardName}>{item.name}</h1>
+          <h1 className={styles.cardName}>{data.name}</h1>
         </div>
         <div className={styles.cardInfo}>
           <ul>
@@ -44,7 +51,7 @@ export const Card = ({ dataType }: DataType) => {
                 </span>
                 <span className={styles.detailValue}>
                   {key === "created"
-                    ? itemDate
+                    ? (value.split("T")[0] as string)
                     : (value as string) || "unknown"}
                 </span>
               </li>

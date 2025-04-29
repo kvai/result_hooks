@@ -11,13 +11,13 @@ export const Navbar = () => {
       <ul className={styles.navbar}>
         <li></li>
         <li>
-          <NavLink to="characters">Characters</NavLink>
+          <NavLink to="character">Characters</NavLink>
         </li>
         <li>
-          <NavLink to="episodes">Episodes</NavLink>
+          <NavLink to="episode">Episodes</NavLink>
         </li>
         <li>
-          <NavLink to="locations">Locations</NavLink>
+          <NavLink to="location">Locations</NavLink>
         </li>
         <button className="btn" onClick={toggleTheme}>
           {theme === "dark" ? "Light" : "Dark"} mode

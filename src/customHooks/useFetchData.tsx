@@ -1,27 +1,66 @@
 import { useEffect, useState } from "react";
-import { getData } from "../helpers/httpRequest";
-import { ResultType } from "../../types/types";
+import axios from "axios";
 import { useLoadingContext } from "./useLoadingContext";
 
-export const useFetchData = (filePath: string) => {
-  const [data, setData] = useState<ResultType>([] as ResultType);
+interface ApiResponse<T> {
+  results: T[];
+  info?: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+}
+
+interface FetchDataResult<T> {
+  data: T[];
+  error: string | null;
+}
+
+interface FetchDataProps {
+  dataType: "character" | "episode" | "location";
+  pageNumber?: string;
+  id?: string;
+}
+
+export const useFetchData = <T,>(props: FetchDataProps): FetchDataResult<T> => {
   const { setLoading } = useLoadingContext();
+  const url = `https://rickandmortyapi.com/api/${
+    props.id ? props.dataType + "/" + props.id : props.dataType
+  }`;
+  const [result, setResult] = useState<FetchDataResult<T>>({
+    data: [],
+    error: null,
+  });
 
   useEffect(() => {
-    const fetchCharacters = async () => {
+    const fetchData = async () => {
       try {
         setLoading(true);
-        const result: ResultType = await getData(filePath);
-        setData(result);
+        setResult((prev) => ({ ...prev, error: null }));
+
+        const response = await axios.get<ApiResponse<T>>(url, {
+          params: { page: props.pageNumber },
+        });
+
+        setResult({
+          data: response.data || [],
+          error: null,
+        });
       } catch (error) {
-        console.error("Ошибка при получении данных:", error);
+        setResult({
+          data: [],
+          error: error.message,
+        });
+
+        console.error("Fetch error:", error.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchCharacters();
-  }, [filePath, setLoading]);
+    fetchData();
+  }, [setLoading, url, props.pageNumber]);
 
-  return { data };
+  return result;
 };
