@@ -1,11 +1,11 @@
-import { Grid } from "@mantine/core";
+import { Box, Center } from "@mantine/core";
 
 export const Home = () => {
   return (
-    <Grid>
-      <Grid.Col>
+    <Center>
+      <Box>
         <h1>Helloooooo!</h1>
-      </Grid.Col>
-    </Grid>
+      </Box>
+    </Center>
   );
 };
