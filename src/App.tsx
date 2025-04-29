@@ -1,4 +1,4 @@
-import "./App.css";
+import "@mantine/core/styles.css";
 import { AppRoutes } from "./components/router/AppRoutes";
 
 function App() {
