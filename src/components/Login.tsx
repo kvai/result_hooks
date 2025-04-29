@@ -1,13 +1,13 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import { useAuthContext } from "../customHooks/useAuthContext";
+import { Button, Grid, Input } from "@mantine/core";
 
 export const Login = () => {
-  const { signin } = useAuthContext();
+  const { signin, user } = useAuthContext();
   const historyLink = useLocation().state?.from || "";
 
   const navigate = useNavigate();
-  const handleNavigate = () => navigate("/");
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -22,15 +22,26 @@ export const Login = () => {
     });
   };
 
+  useEffect(() => {
+    if (user) {
+      navigate("/", {
+        replace: true,
+      });
+    }
+  }, [navigate, user]);
+
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label>
-          user: <input type="text" name="username" />
-        </label>
-        <button type="submit">Sign In</button>
-      </form>
-      <button onClick={handleNavigate}>Вернуться на главную</button>
-    </>
+    <form onSubmit={handleSubmit}>
+      <Grid align="end">
+        <Grid.Col span={6}>
+          <Input.Wrapper label="User" required>
+            <Input placeholder="Enter username" name="username" required />
+          </Input.Wrapper>
+        </Grid.Col>
+        <Grid.Col span="auto">
+          <Button type="submit">Sign In</Button>
+        </Grid.Col>
+      </Grid>
+    </form>
   );
 };
