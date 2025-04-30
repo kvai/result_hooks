@@ -1,8 +1,9 @@
-import { Button, NavLink } from "@mantine/core";
+import { Button } from "@mantine/core";
 import styles from "./Navbar.module.scss";
 import { AuthStatus } from "../AuthStatus";
 import { useThemeContext } from "../../customHooks/useThemeContext";
 import { IconHome2 } from "@tabler/icons-react";
+import { NavLink } from "react-router-dom";
 export const Navbar = () => {
   const { theme, toggleTheme } = useThemeContext();
 
@@ -10,20 +11,13 @@ export const Navbar = () => {
     <nav>
       <ul className={styles.navbar}>
         <li>
-          <NavLink
-            href="/"
-            label="Home"
-            leftSection={<IconHome2 size={16} stroke={1.5} />}
-          />
+          <NavLink to="/character">characters</NavLink>
         </li>
         <li>
-          <NavLink href="character" label="Characters" />
+          <NavLink to="/episode">episodes</NavLink>
         </li>
         <li>
-          <NavLink href="character" label="Episodes" />
-        </li>
-        <li>
-          <NavLink href="character" label="Locations" />
+          <NavLink to="/location">locations</NavLink>
         </li>
         <Button variant="default" onClick={toggleTheme}>
           {theme === "dark" ? "Light" : "Dark"} mode
