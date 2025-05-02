@@ -6,6 +6,7 @@ import { ThemeProvider } from "./providers/ThemeProvider.tsx";
 import "./index.css";
 import App from "./App.tsx";
 import { AuthProvider } from "./providers/AuthProvider.tsx";
+import { MantineProvider } from "@mantine/core";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -13,7 +14,9 @@ createRoot(document.getElementById("root")!).render(
       <AuthProvider>
         <LoadingProvider>
           <ThemeProvider>
-            <App />
+            <MantineProvider>
+              <App />
+            </MantineProvider>
           </ThemeProvider>
         </LoadingProvider>
       </AuthProvider>

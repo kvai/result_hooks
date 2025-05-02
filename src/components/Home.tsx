@@ -1,7 +1,11 @@
-import { useFetchData } from "../customHooks/useFetchData";
+import { Box, Center } from "@mantine/core";
 
 export const Home = () => {
-  useFetchData("character", "2");
-
-  return <h1>Helloooooo!</h1>;
+  return (
+    <Center>
+      <Box>
+        <h1>Helloooooo!</h1>
+      </Box>
+    </Center>
+  );
 };

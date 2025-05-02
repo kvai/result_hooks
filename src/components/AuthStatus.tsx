@@ -1,5 +1,6 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../customHooks/useAuthContext";
+import { Button } from "@mantine/core";
 
 export const AuthStatus = () => {
   const navigate = useNavigate();
@@ -9,14 +10,14 @@ export const AuthStatus = () => {
     signout(() => navigate("/"));
   };
   return !user ? (
-    <NavLink className="login_btn btn" to="/login">
+    <Button size={"compact-md"} onClick={() => navigate("/login")}>
       Sign In
-    </NavLink>
+    </Button>
   ) : (
     <>
-      <button className="btn" onClick={handleSignOut}>
+      <Button onClick={handleSignOut} variant="light" color="red">
         Sign Out
-      </button>
+      </Button>
     </>
   );
 };
